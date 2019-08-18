@@ -4,9 +4,7 @@ import re
 
 
 def save_matching_users(data, criteria, token):
-    print(data)
     data = filter_for_users(data, criteria)
-    print(data)
     for user in data:
         print('Добавляем подходящего пользователя...')
         matching_user = MatchingUser(user['id'], token)

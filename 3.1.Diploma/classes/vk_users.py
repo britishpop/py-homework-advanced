@@ -15,7 +15,7 @@ class BaseUser:
         self.fields = self.config.fields
         session = vk.Session(access_token=token)
         self.vk_api = vk.API(session, v=version, timeout=10)
-
+        self.data = self.vk_api.users.get(user_ids=self.user_id, fields=self.fields)[0]
 
 class MainUser(BaseUser):
 
@@ -23,7 +23,7 @@ class MainUser(BaseUser):
         BaseUser.__init__(self, user_id, token)
 
     def get_user_data(self):
-        data = self.vk_api.users.get(user_ids=self.user_id, fields=self.fields)[0]
+        data = self.data
         try:
             data['country'] = data['country']['id']
         except KeyError:

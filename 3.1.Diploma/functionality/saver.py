@@ -24,45 +24,21 @@ def filter_for_users(data, criteria):
 
 def get_score_for_user(user, criteria):
     score = 0
-    common_count = 10
-    music = 5
-    book = 3
-    interest = 2
-    movie = 1
 
     if user['common_count'] != 0:
         score += common_count*user['common_count']
 
-    try:
-        for i in criteria['music']:
-            result = re.findall(i, user['music'], re.IGNORECASE)
+    for item in ['music', 'books', 'interests', 'movies']:
+        for i in criteria.get(item):
+            result = re.findall(i, user[item], re.IGNORECASE)
             if result:
-                score += music
-    except KeyError:
-        pass
+                if item == 'music':
+                    score += 5
+                if item == 'books':
+                    score += 3
+                if item == 'interests':
+                    score += 2
+                if item == 'movies':
+                    score += 1
 
-    try:
-        for i in criteria['books']:
-            result = re.findall(i, user['books'], re.IGNORECASE)
-            if result:
-                score += book
-    except KeyError:
-        pass
-
-    try:
-        for i in criteria['interests']:
-            result = re.findall(i, user['interests'], re.IGNORECASE)
-            if result:
-                score += interest
-    except KeyError:
-        pass
-
-    try:
-        for i in criteria['movies']:
-            result = re.findall(i, user['movies'], re.IGNORECASE)
-            if result:
-                score += movie
-    except KeyError:
-        pass
-
-    return score
+        return score

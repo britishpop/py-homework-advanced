@@ -2,6 +2,7 @@
 
 import psycopg2
 
+
 def create_db(con):
     cursor = con.cursor()
     try:

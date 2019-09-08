@@ -71,7 +71,6 @@ class MatchingUser(BaseUser):
         except vk.exceptions.VkAPIError:
             raw_photos = []
 
-
         photos = []
         for photo in raw_photos:
             ph = {'id': photo['id'], 'likes': photo['likes']['count'],

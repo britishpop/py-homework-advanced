@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 class BaseConfig:
 
     def __init__(self):

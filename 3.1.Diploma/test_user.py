@@ -2,7 +2,6 @@ import json
 import os
 import unittest
 from mock import patch, Mock
-from classes import config
 from classes import vk_users
 
 
@@ -48,6 +47,7 @@ class TestUser(unittest.TestCase):
         u.config = mock
         result = u.get_data_for_search()
         self.assertEqual(result, self.expect_user_for_config)
+
 
 if __name__ == '__main__':
     SUITE = unittest.TestLoader().loadTestsFromTestCase(TestUser)

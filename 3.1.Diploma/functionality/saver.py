@@ -26,7 +26,7 @@ def get_score_for_user(user, criteria):
     score = 0
 
     if user['common_count'] != 0:
-        score += common_count*user['common_count']
+        score += 10 * user['common_count']
 
     for item in ['music', 'books', 'interests', 'movies']:
         for i in criteria.get(item):
